@@ -1,0 +1,126 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`id-panel` Panel element with Idaho styling.
+
+@demo demo/index.html
+-->
+
+<dom-module id="id-panel">
+  <template>
+    <style>
+      * {
+        -webkit-box-sizing: inherit;
+        box-sizing: inherit;
+      }
+
+      :host {
+
+        --border-color: var(--id-primary-light-border, #d9edf7);
+        --header-background: var(--id-primary-light, #eef7fb);
+        --header-color: inherit;
+
+        position: relative;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: .25rem;
+        margin-bottom: 1rem;
+      }
+
+      #header {
+        border-radius: 4px 4px 0 0;
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: var(--header-background);
+        border-bottom: 1px solid var(--border-color);
+        font-size: 1rem;
+        color: var(--header-color);
+      }
+
+      #block {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1.25rem;
+      }
+
+
+    </style>
+    <div id="header">
+      [[heading]]
+    </div>
+    <div id="block">
+      <slot id="content"></slot>
+    </div>
+  </template>
+
+  <script>
+    class IdPanel extends Polymer.Element {
+      static get is() { return 'id-panel'; }
+      static get properties() {
+        return {
+          /**
+           * Color variations for the panel. Success, Warning, Danger
+           */
+          color: {
+            type: String,
+            value: 'default'
+          }
+          /**
+           * Set the heading of the panel.
+           */
+          heading: {
+            type: String,
+            value: 'Panel'
+          }
+        };
+      }
+
+      constructor() {
+        super();
+
+        this.colors = {
+          primary: {
+            '--border-color': 'var(--id-primary-color)',
+            '--header-background': 'var(--id-primary-color)',
+            '--header-color': '#fff',
+          },
+          success: {
+            '--border-color': '#558B2F',
+            '--header-background': '#558B2F',
+            '--header-color': '#fff',
+          },
+          warning: {
+            '--border-color': '#f0ad4e',
+            '--header-background': '#f0ad4e',
+            '--header-color': '#fff',
+          },
+          danger: {
+            '--border-color': '#c62828',
+            '--header-background': '#c62828',
+            '--header-color': '#fff',
+          }
+        }
+      }
+
+      ready() {
+        super.ready();
+        if (this.colors[this.color]) {
+          this.updateStyles(this.colors[this.color]);
+        }
+      }
+    }
+
+    window.customElements.define(IdPanel.is, IdPanel);
+  </script>
+</dom-module>
