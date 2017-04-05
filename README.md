@@ -8,7 +8,7 @@ Add the following to bower.json.
 
 ```JSON
 {
-  "id-alert": "https://github.com/accessidaho/egov-id-panel.git"
+  "id-panel": "https://github.com/accessidaho/egov-id-panel.git"
 }
 ```
 
