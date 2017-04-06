@@ -23,7 +23,7 @@ Import the element:
 Add the element and set properties:
 
 ```html
-<id-panel color="[success, warning, danger]" heading="Panel Heading">Panel Body</id-panel>
+<id-panel color="[success, warning, danger]" title="Panel Title">Panel Body</id-panel>
 ```
 
 ## Styling
