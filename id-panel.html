@@ -66,19 +66,27 @@
   </template>
 
   <script>
+    /**
+     * `id-panel`
+     * Idaho panel element.
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
     class IdPanel extends Polymer.Element {
       static get is() { return 'id-panel'; }
       static get properties() {
         return {
           /**
-           * Color variations for the panel. Success, Warning, Danger
+           * Context variations for the panel. [success, warning, danger]
            */
-          color: {
+          contenxt: {
             type: String,
             value: 'default'
           },
           /**
-           * Set the heading of the panel.
+           * Set the title of the panel.
            */
           title: {
             type: String,
@@ -90,7 +98,7 @@
       constructor() {
         super();
 
-        this.colors = {
+        this.contexts = {
           primary: {
             '--border-color': 'var(--id-primary-color)',
             '--header-background': 'var(--id-primary-color)',
@@ -116,8 +124,8 @@
 
       ready() {
         super.ready();
-        if (this.colors[this.color]) {
-          this.updateStyles(this.colors[this.color]);
+        if (this.contexts[this.context]) {
+          this.updateStyles(this.contexts[this.context]);
         }
       }
     }
